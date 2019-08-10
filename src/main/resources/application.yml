@@ -1,0 +1,10 @@
+# mysql
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://cdb-1yfd1mlm.cd.tencentcdb.com:10056/hr
+    username: root
+    password: ABCcba20170607
+mybatis:
+  type-aliases-package: com.ming.mapper
+
