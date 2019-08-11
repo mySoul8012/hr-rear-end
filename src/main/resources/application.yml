@@ -1,10 +1,8 @@
-# mysql
 spring:
   datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://cdb-1yfd1mlm.cd.tencentcdb.com:10056/hr
     username: root
     password: ABCcba20170607
-mybatis:
-  type-aliases-package: com.ming.mapper
-
+server:
+  port: 8082

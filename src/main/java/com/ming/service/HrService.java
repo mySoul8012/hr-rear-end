@@ -1,26 +1,26 @@
 package com.ming.service;
 
 import com.ming.bean.Hr;
-import com.ming.common.HrUtils;
+import com.ming.mapper.HrMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-
-import java.util.List;
-
-public interface HrService extends UserDetailsService {
-    public int hrReg(String username, String password);
-
-    public List<Hr> getHrsByKeywords(String keywords);
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 
-    public int updateHr(Hr hr);
+@Service("HrService")
+public class HrService implements UserDetailsService {
+    @Autowired
+    HrMapper hrMapper;
 
-    public int updateHrRoles(Long hrId, Long[] rids);
-
-    public Hr getHrById(Long hrId);
-
-    public int deleteHr(Long hrId);
-
-    public List<Hr> getAllHrExceptAdmin();
-    public List<Hr> getAllHr();
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Hr hr = hrMapper.loadUserByUsername(username);
+        if (hr == null) {
+            throw new UsernameNotFoundException("用户名不对");
+        }
+        return hr;
+    }
 }

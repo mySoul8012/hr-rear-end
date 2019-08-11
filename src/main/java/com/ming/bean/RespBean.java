@@ -1,8 +1,5 @@
 package com.ming.bean;
 
-import lombok.Data;
-
-@Data
 public class RespBean {
     private Integer status;
     private String msg;
@@ -37,4 +34,31 @@ public class RespBean {
         this.obj = obj;
     }
 
+    public Integer getStatus() {
+
+        return status;
+    }
+
+    public RespBean setStatus(Integer status) {
+        this.status = status;
+        return this;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public RespBean setMsg(String msg) {
+        this.msg = msg;
+        return this;
+    }
+
+    public Object getObj() {
+        return obj;
+    }
+
+    public RespBean setObj(Object obj) {
+        this.obj = obj;
+        return this;
+    }
 }

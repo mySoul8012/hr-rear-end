@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.sang.mapper.HrMapper">
-    <resultMap id="BaseResultMap" type="org.sang.bean.Hr">
+<mapper namespace="com.ming.mapper.HrMapper">
+    <resultMap id="BaseResultMap" type="com.ming.bean.Hr">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="phone" property="phone"/>
@@ -15,12 +15,12 @@
         <result column="userface" property="userface"/>
         <result column="remark" property="remark"/>
     </resultMap>
-    <resultMap id="lazyLoadRoles" type="org.sang.bean.Hr" extends="BaseResultMap">
-        <collection property="roles" ofType="org.sang.bean.Role" select="org.sang.mapper.HrMapper.getRolesByHrId"
+    <resultMap id="lazyLoadRoles" type="com.ming.bean.Hr" extends="BaseResultMap">
+        <collection property="roles" ofType="com.ming.bean.Role" select="com.ming.mapper.HrMapper.getRolesByHrId"
                     column="id"></collection>
     </resultMap>
-    <resultMap id="eagerLoadRoles" type="org.sang.bean.Hr" extends="BaseResultMap">
-        <collection property="roles" ofType="org.sang.bean.Role">
+    <resultMap id="eagerLoadRoles" type="com.ming.bean.Hr" extends="BaseResultMap">
+        <collection property="roles" ofType="com.ming.bean.Role">
             <id property="id" column="rid"/>
             <result property="name" column="rname"/>
             <result property="nameZh" column="rnameZh"/>
@@ -29,7 +29,7 @@
     <select id="loadUserByUsername" resultMap="lazyLoadRoles">
         select * from hr WHERE username=#{username};
     </select>
-    <select id="getRolesByHrId" resultType="org.sang.bean.Role">
+    <select id="getRolesByHrId" resultType="com.ming.bean.Role">
         SELECT r.* FROM hr_role h,role r where h.rid=r.id AND h.hrid=#{id}
     </select>
     <insert id="hrReg">
@@ -48,7 +48,7 @@
         select h.*,`r`.`id` AS `rid`,`r`.`name` AS `rname`,`r`.`nameZh` AS `rnameZh` from ((`hr` `h` left join `hr_role`
         `h_r` on ((`h`.`id` = `h_r`.`hrid`))) left join `role` `r` on ((`h_r`.`rid` = `r`.`id`))) where h.`id`=#{hrId}
     </select>
-    <update id="updateHr" parameterType="org.sang.bean.Hr">
+    <update id="updateHr" parameterType="com.ming.bean.Hr">
         update hr
         <set>
             <if test="name != null">
@@ -93,7 +93,7 @@
     <delete id="deleteHr" parameterType="Long">
         DELETE FROM hr WHERE id=#{hrId}
     </delete>
-    <select id="getAllHr" resultType="org.sang.bean.Hr">
+    <select id="getAllHr" resultType="com.ming.bean.Hr">
         select * from hr
         <if test="currentId!=null">
             WHERE id !=#{currentId}

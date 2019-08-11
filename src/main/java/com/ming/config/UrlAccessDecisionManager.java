@@ -13,41 +13,30 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 import java.util.Iterator;
 
-/**
- * 进行访问控制权限验证
- */
 @Component
 public class UrlAccessDecisionManager implements AccessDecisionManager {
-    /**
-     *
-     * @param authentication
-     * @param object
-     * @param configAttributes  相关配置信息
-     * @throws AccessDeniedException
-     * @throws InsufficientAuthenticationException
-     */
     @Override
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
         Iterator<ConfigAttribute> iterator = configAttributes.iterator();
-        while(iterator.hasNext()){
-            ConfigAttribute configAttribute = iterator.next();
-            String needRole = configAttribute.getAttribute();
-            if("ROLE_LOGIN".equals(needRole)){
-                // 判断auth是否是匿名用户
-                if(authentication instanceof AnonymousAuthenticationToken){
+        while (iterator.hasNext()) {
+            ConfigAttribute ca = iterator.next();
+            // 获取当前请求的权限
+            String needRole = ca.getAttribute();
+            if ("ROLE_LOGIN".equals(needRole)) {
+                if (authentication instanceof AnonymousAuthenticationToken) {
                     throw new BadCredentialsException("未登录");
-                }else{
+                } else
                     return;
-                }
             }
-            // 判断当前用户的角色
+            // 当前用户所具有的所有权限
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-            for(GrantedAuthority authority: authorities){
-                if(authentication.getAuthorities().equals(needRole)){
+            for (GrantedAuthority authority : authorities) {
+                if (authority.getAuthority().equals(needRole)) {
                     return;
                 }
             }
         }
+        throw new AccessDeniedException("权限不足!");
     }
 
     @Override
