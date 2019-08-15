@@ -8,7 +8,7 @@ public class Employee {
     private Long id;
     private String name;
     private String gender;
-    private Date birthday;
+    private String birthday;
     private String idCard;
     private String wedlock;
     private Long nationId;
@@ -29,14 +29,14 @@ public class Employee {
     private String tiptopDegree;
     private String specialty;
     private String school;
-    private Date beginDate;
+    private String beginDate;
     private String workState;
     private String workID;
     private Double contractTerm;
-    private Date conversionTime;
-    private Date notWorkDate;
-    private Date beginContract;
-    private Date endContract;
+    private String conversionTime;
+    private String notWorkDate;
+    private String beginContract;
+    private String endContract;
     private Integer workAge;
     private Department department;
     private Nation nation;
@@ -125,11 +125,11 @@ public class Employee {
         this.gender = gender;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -294,11 +294,11 @@ public class Employee {
         this.school = school;
     }
 
-    public Date getBeginDate() {
+    public String getBeginDate() {
         return beginDate;
     }
 
-    public void setBeginDate(Date beginDate) {
+    public void setBeginDate(String beginDate) {
         this.beginDate = beginDate;
     }
 
@@ -326,35 +326,35 @@ public class Employee {
         this.contractTerm = contractTerm;
     }
 
-    public Date getConversionTime() {
+    public String getConversionTime() {
         return conversionTime;
     }
 
-    public void setConversionTime(Date conversionTime) {
+    public void setConversionTime(String conversionTime) {
         this.conversionTime = conversionTime;
     }
 
-    public Date getNotWorkDate() {
+    public String getNotWorkDate() {
         return notWorkDate;
     }
 
-    public void setNotWorkDate(Date notWorkDate) {
+    public void setNotWorkDate(String notWorkDate) {
         this.notWorkDate = notWorkDate;
     }
 
-    public Date getBeginContract() {
+    public String getBeginContract() {
         return beginContract;
     }
 
-    public void setBeginContract(Date beginContract) {
+    public void setBeginContract(String beginContract) {
         this.beginContract = beginContract;
     }
 
-    public Date getEndContract() {
+    public String getEndContract() {
         return endContract;
     }
 
-    public void setEndContract(Date endContract) {
+    public void setEndContract(String endContract) {
         this.endContract = endContract;
     }
 

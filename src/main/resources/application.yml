@@ -1,8 +1,21 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://cdb-1yfd1mlm.cd.tencentcdb.com:10056/hr
+    url: jdbc:mysql://cdb-1yfd1mlm.cd.tencentcdb.com:10056/vhr
     username: root
+    password: ABCcba20170607
+  mail:
+    host: smtp.exmail.qq.com
+    port: 465
+    username: vhr@mingming.email
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+        debug: true
     password: ABCcba20170607
 server:
   port: 8082
+

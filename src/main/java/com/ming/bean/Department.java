@@ -38,7 +38,7 @@ public class Department {
         return name != null ? name.hashCode() : 0;
     }
 
-    //存储过程执行结果
+
     private Integer result;
     private List<Department> children = new ArrayList<>();
 

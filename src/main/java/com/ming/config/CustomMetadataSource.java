@@ -28,7 +28,7 @@ public class CustomMetadataSource implements FilterInvocationSecurityMetadataSou
         List<Menu> allMenu = menuService.getAllMenu();
         for (Menu menu : allMenu) {
             if (antPathMatcher.match(menu.getUrl(), requestUrl)
-                    &&menu.getRoles().size()>0) {
+                    && menu.getRoles().size()>0) {
                 List<Role> roles = menu.getRoles();
                 int size = roles.size();
                 String[] values = new String[size];

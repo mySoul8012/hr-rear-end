@@ -13,13 +13,13 @@ public class MenuService {
     @Autowired
     MenuMapper menuMapper;
 
-    //    @Cacheable(key = "#root.methodName")
     public List<Menu> getAllMenu(){
         return menuMapper.getAllMenu();
     }
 
     public List<Menu> getMenusByHrId() {
-        return menuMapper.getMenusByHrId(HrUtils.getCurrentHr().getId());
+        List<Menu> listMenu =  menuMapper.getMenusByHrId(HrUtils.getCurrentHr().getId());
+        return listMenu;
     }
 
     public List<Menu> menuTree() {
